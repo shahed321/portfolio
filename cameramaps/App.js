@@ -1,27 +1,11 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
+import { StyleSheet, Text, View } from 'react-native';
 
 export default class App extends React.Component {
-  state ={
-    placeName : ""
-  };
-
-  placeNameChangedHandler = val =>{
-    this.setState({
-      placeName: val
-    })
-  };
   render() {
-
-
     return (
       <View style={styles.container}>
-        <TextInput 
-        style={{width: 300, borderColor: "black", borderWidth: 2}}
-        value={this.state.placeName}
-        onChangeText={this.placeNameChangedHandler}
-        />
+        <Text>Open up App.js to start working on your app!</Text>
       </View>
     );
   }
