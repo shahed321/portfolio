@@ -21,7 +21,7 @@ export default class App extends Component{
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>MyFisrt App!</Text>
+        <Text style={styles.welcome}>Second Test!</Text>
       </View>
     );
   }
