@@ -19,14 +19,18 @@ const instructions = Platform.select({
 //type Props = {};
 export default class App extends Component {
   state ={
-    placeName: {}
-  }
-  placeNameHandler
+    placeName: ''
+  };
+  placeNameChangedHandler=val=>{
+    this.setState({
+      placeName=val
+    });
+  };
   render() {
     return (
       <View style={styles.container}>
         <TextInput
-        style={{width: 300, borderColor: black, borderWidth:1}}
+        style={{width: 300, borderColor: "black", borderWidth:1}}
         value= {this.state.placeName}
         onChangeText={this.placeNameChangedHandler}
          />
