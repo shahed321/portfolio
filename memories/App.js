@@ -7,7 +7,10 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, Text, TextInput, View, Button} from 'react-native';
+
+//import ListItem from './src/components/listItem/ListItem';
+import PlaceList from './src/components/placeList/PlaceList';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -19,21 +22,44 @@ const instructions = Platform.select({
 //type Props = {};
 export default class App extends Component {
   state ={
-    placeName: ''
+    placeName: '',
+    places:[]
   };
   placeNameChangedHandler=val=>{
     this.setState({
-      placeName=val
+      placeName: val
     });
   };
+
+  placeSubmitHandler=()=>{
+    if(this.state.placeName.trim() ===""){
+      return;
+    }
+    this.setState(prevState=>{
+      return{
+        places: prevState.places.concat(prevState.placeName)
+      };
+    })
+  };
   render() {
+
+
     return (
       <View style={styles.container}>
+        <View style={styles.inputContainer}>
         <TextInput
-        style={{width: 300, borderColor: "black", borderWidth:1}}
+        style={styles.placeInput}
+        placeholder= "Awesome Memories"
         value= {this.state.placeName}
         onChangeText={this.placeNameChangedHandler}
          />
+        <Button 
+        style={styles.placeButton} 
+        title="Add"
+        onPress={this.placeSubmitHandler}
+         />
+         </View>
+         <PlaceList places={this.state.places} />
       </View>
     );
   }
@@ -41,19 +67,26 @@ export default class App extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    //flex: 1,
+    padding: 20,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#fff',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  inputContainer:{
+    //flex:1,
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: 'center'
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  placeInput:{
+    width: "70%"
   },
+  placeButton:{
+    width: "30%"
+  },
+  listContainer:{
+    width:"100%"
+  }
 });
